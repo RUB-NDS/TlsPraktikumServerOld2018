@@ -5,7 +5,7 @@ aufgabe1:
   tags: 
     - tls
   script:
-    - echo "Aufgabe1 wird gebaut
+    - echo "Aufgabe1 wird gebaut"
     - mvn clean package -P aufgabe1
  
 aufgabe2:
@@ -13,7 +13,7 @@ aufgabe2:
   tags: 
     - tls
   script:
-    - echo "Aufgabe2 wird gebaut
+    - echo "Aufgabe2 wird gebaut"
     - mvn clean package -P aufgabe2
 
 aufgabe3:
@@ -21,7 +21,7 @@ aufgabe3:
   tags: 
     - tls
   script:
-    - echo "Aufgabe3 wird gebaut
+    - echo "Aufgabe3 wird gebaut"
     - mvn clean package -P aufgabe3
 
 aufgabe4:
@@ -29,5 +29,5 @@ aufgabe4:
   tags: 
     - tls
   script:
-    - echo "Aufgabe4 wird gebaut
+    - echo "Aufgabe4 wird gebaut"
     - mvn clean package -P aufgabe4
