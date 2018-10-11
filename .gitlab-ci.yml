@@ -1,33 +1,37 @@
 image: maven:latest
 
+compilation:
+  stage: build
+  tags: 
+    - tls
+  script:
+    - echo "Der Server wird gebaut"
+    - mvn clean package -DskipTests=true
+    
 aufgabe1:
-  stage: build
+  stage: test
   tags: 
     - tls
   script:
-    - echo "Aufgabe1 wird gebaut"
-    - mvn clean package -P aufgabe1
- 
+    - mvn test -P aufgabe1 
+    
 aufgabe2:
-  stage: build
+  stage: test
   tags: 
     - tls
   script:
-    - echo "Aufgabe2 wird gebaut"
-    - mvn clean package -P aufgabe2
+    - if [ `date +%y%m%d` -gt 181024 ]; then mvn test -P aufgabe2; fi 
 
 aufgabe3:
-  stage: build
+  stage: test
   tags: 
     - tls
   script:
-    - echo "Aufgabe3 wird gebaut"
-    - mvn clean package -P aufgabe3
+    - if [ `date +%y%m%d` -gt 181120 ]; then mvn test -P aufgabe3; fi 
 
 aufgabe4:
-  stage: build
+  stage: test
   tags: 
     - tls
   script:
-    - echo "Aufgabe4 wird gebaut"
-    - mvn clean package -P aufgabe4
+    - if [ `date +%y%m%d` -gt 181030 ]; then mvn test -P aufgabe4; fi 
