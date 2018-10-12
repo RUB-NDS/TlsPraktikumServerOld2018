@@ -94,12 +94,4 @@ public class HkdFunctionTest {
         byte[] derivedSecret = HkdFunction.deriveSecret(Util.hexStringToByteArray("33ad0a1c607ec03b09e6cd9893680ce210adf300aa1f2660e1b22e10f170f92a"), "derived", Util.hexStringToByteArray(""));
         assertArrayEquals(Util.hexStringToByteArray("6f2615a108c702c5678f54fc9dbab69716c076189c48250cebeac3576c3611ba"), derivedSecret);
     }
-
-    /**
-     *
-     */
-    @Test
-    public void testExpandLabel() {
-    }
-
 }
