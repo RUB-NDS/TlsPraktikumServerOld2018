@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.rub.nds.praktikum.protocol;
 
-import de.rub.nds.praktikum.constants.AlertDescription;
-import de.rub.nds.praktikum.constants.AlertLevel;
 import de.rub.nds.praktikum.constants.ProtocolType;
 import de.rub.nds.praktikum.constants.TlsState;
 import de.rub.nds.praktikum.records.Record;
 import de.rub.nds.praktikum.util.Util;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

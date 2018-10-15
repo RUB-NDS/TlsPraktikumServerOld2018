@@ -1,4 +1,3 @@
-
 package de.rub.nds.praktikum.messages.extensions;
 
 import de.rub.nds.praktikum.exception.ParserException;

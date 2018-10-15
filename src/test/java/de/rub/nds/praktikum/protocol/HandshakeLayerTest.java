@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.rub.nds.praktikum.protocol;
 
 import de.rub.nds.praktikum.constants.CipherSuite;
@@ -79,12 +74,10 @@ public class HandshakeLayerTest {
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         handshakeLayer.sendServerHello();
         byte[] serverHelloBytes = outputStream.toByteArray();
-        System.out.println("Send SH as:" + Util.bytesToHexString(serverHelloBytes));
         assertTrue(serverHelloBytes.length == 133);//We only implement a minimal version of the SH with only one supported named group - it should contain exactly 133 bytes (with record header)
         //Since we do not have a SH parser we need to create one manually
         RecordParser parser = new RecordParser(serverHelloBytes);
         Record parsedRecord = parser.parse();
-        System.out.println("RecordPayload:" + Util.bytesToHexString(parsedRecord.getData()));
         Assert.assertTrue(parsedRecord.getData().length == 0x7A);
         Assert.assertArrayEquals(Util.hexStringToByteArray("0303"), parsedRecord.getVersion());
         Assert.assertTrue(parsedRecord.getType() == ProtocolType.HANDSHAKE.getByteValue());
@@ -122,12 +115,10 @@ public class HandshakeLayerTest {
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         handshakeLayer.sendServerHello();
         byte[] serverHelloBytes = outputStream.toByteArray();
-        System.out.println("Send SH as:" + Util.bytesToHexString(serverHelloBytes));
         assertTrue(serverHelloBytes.length == 133);//We only implement a minimal version of the SH with only one supported named group - it should contain exactly 133 bytes (with record header)
         //Since we do not have a SH parser we need to create one manually
         RecordParser parser = new RecordParser(serverHelloBytes);
         Record parsedRecord = parser.parse();
-        System.out.println("RecordPayload:" + Util.bytesToHexString(parsedRecord.getData()));
         Assert.assertTrue(parsedRecord.getData().length == 0x7A);
         Assert.assertArrayEquals(Util.hexStringToByteArray("0303"), parsedRecord.getVersion());
         Assert.assertTrue(parsedRecord.getType() == ProtocolType.HANDSHAKE.getByteValue());
@@ -164,11 +155,9 @@ public class HandshakeLayerTest {
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         handshakeLayer.sendEncryptedExtensions();
         byte[] encryptedExtensionBytes = outputStream.toByteArray();
-        System.out.println("Send EncryptedExtensions as:" + Util.bytesToHexString(encryptedExtensionBytes));
         assertTrue(encryptedExtensionBytes.length == 11);//We send an empty encryptedExtension message in a single record
         RecordParser parser = new RecordParser(encryptedExtensionBytes);
         Record parsedRecord = parser.parse();
-        System.out.println("RecordPayload:" + Util.bytesToHexString(parsedRecord.getData()));
         Assert.assertTrue(parsedRecord.getData().length == 6);
         Assert.assertArrayEquals(Util.hexStringToByteArray("0303"), parsedRecord.getVersion());
         Assert.assertTrue(parsedRecord.getType() == ProtocolType.HANDSHAKE.getByteValue());
@@ -188,11 +177,9 @@ public class HandshakeLayerTest {
         context.setCertificate(Certificate.EMPTY_CHAIN);
         handshakeLayer.sendCertificates();
         byte[] certificateBytes = outputStream.toByteArray();
-        System.out.println("Send CertificateMessage as:" + Util.bytesToHexString(certificateBytes));
         assertTrue(certificateBytes.length == 13);//We send an empty encryptedExtension message in a single record
         RecordParser parser = new RecordParser(certificateBytes);
         Record parsedRecord = parser.parse();
-        System.out.println("RecordPayload:" + Util.bytesToHexString(parsedRecord.getData()));
         Assert.assertTrue(parsedRecord.getData().length == 8);
         Assert.assertArrayEquals(Util.hexStringToByteArray("0303"), parsedRecord.getVersion());
         Assert.assertTrue(parsedRecord.getType() == ProtocolType.HANDSHAKE.getByteValue());
@@ -222,10 +209,8 @@ public class HandshakeLayerTest {
         final PublicKey pubKey = pair.getPublic();
         handshakeLayer.sendCertificateVerify();
         byte[] certificateVerifyBytes = outputStream.toByteArray();
-        System.out.println("Send CertificateVerify as:" + Util.bytesToHexString(certificateVerifyBytes));
         RecordParser parser = new RecordParser(certificateVerifyBytes);
         Record parsedRecord = parser.parse();
-        System.out.println("RecordPayload:" + Util.bytesToHexString(parsedRecord.getData()));
         Assert.assertArrayEquals(Util.hexStringToByteArray("0303"), parsedRecord.getVersion());
         Assert.assertTrue(parsedRecord.getType() == ProtocolType.HANDSHAKE.getByteValue());
         Parser tempParser = new Parser(parsedRecord.getData()) {
@@ -241,7 +226,6 @@ public class HandshakeLayerTest {
                     sig.initVerify(pubKey);
                     sig.verify(signature);
                 } catch (InvalidKeyException | NoSuchAlgorithmException | SignatureException ex) {
-                    ex.printStackTrace();
                     Assert.fail();
                 }
                 assertTrue(signatureLength == hsLength - 4);
@@ -260,11 +244,9 @@ public class HandshakeLayerTest {
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         handshakeLayer.sendFinished();
         byte[] finishedBytes = outputStream.toByteArray();
-        System.out.println("Send FinishedMessage as:" + Util.bytesToHexString(finishedBytes));
         assertTrue(finishedBytes.length == 41);//We send an empty encryptedExtension message in a single record
         RecordParser parser = new RecordParser(finishedBytes);
         Record parsedRecord = parser.parse();
-        System.out.println("RecordPayload:" + Util.bytesToHexString(parsedRecord.getData()));
         Assert.assertTrue(parsedRecord.getData().length == 36);
         Assert.assertArrayEquals(Util.hexStringToByteArray("0303"), parsedRecord.getVersion());
         Assert.assertTrue(parsedRecord.getType() == ProtocolType.HANDSHAKE.getByteValue());

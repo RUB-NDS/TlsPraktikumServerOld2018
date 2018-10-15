@@ -20,7 +20,6 @@ public class CertificateMessageSerializerTest {
         certbyteList.add(new byte[]{1, 2, 3});
         CertificateMessage message = new CertificateMessage(certbyteList);
         CertificateMessageSerializer serializer = new CertificateMessageSerializer(message);
-        System.out.println(Util.bytesToHexString(serializer.serialize()));
         assertArrayEquals("A certificate message with the certificate \"010203\"", Util.hexStringToByteArray("000000080000030102030000"), serializer.serialize());
         certbyteList.add(new byte[]{4, 5, 6});
         message = new CertificateMessage(certbyteList);
