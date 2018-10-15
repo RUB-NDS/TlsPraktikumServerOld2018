@@ -10,6 +10,7 @@ import de.rub.nds.praktikum.records.RecordSerializer;
 import de.rub.nds.praktikum.util.Util;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.security.Security;
 import java.util.List;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
@@ -110,7 +111,30 @@ public class RecordLayerTest {
         recordLayer = new RecordLayer(outputStream, inputStream, context, 0);
         receivedRecords = recordLayer.receiveData();
         assertTrue(receivedRecords.size() == 8);
+    }
 
+    @Test
+    @Category(Aufgabe1.class)
+    public void testSendData() throws IOException {
+        SessionContext context = new SessionContext(null, null);
+        inputStream = new ByteArrayInputStream(new byte[0]);
+        recordLayer = new RecordLayer(outputStream, inputStream, context, 0);
+        recordLayer.sendData(new byte[10], ProtocolType.HANDSHAKE);
+        assertArrayEquals(Util.hexStringToByteArray("160303000A00000000000000000000"), outputStream.toByteArray());
+    }
+
+    @Test
+    @Category(Aufgabe1.class)
+    public void testSendMulitpleRecordData() throws IOException {
+        SessionContext context = new SessionContext(null, null);
+        inputStream = new ByteArrayInputStream(new byte[0]);
+        recordLayer = new RecordLayer(outputStream, inputStream, context, 0);
+        recordLayer.sendData(new byte[1000000], ProtocolType.HANDSHAKE);
+        inputStream = new ByteArrayInputStream(new byte[0]);
+        recordLayer = new RecordLayer(outputStream, new ByteArrayInputStream(outputStream.toByteArray()), context, 0);
+
+        List<Record> reparsedRecordList = recordLayer.receiveData();
+        assertTrue(reparsedRecordList.size() == 245);
     }
 
     /**
