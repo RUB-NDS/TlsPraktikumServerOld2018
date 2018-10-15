@@ -49,7 +49,6 @@ import org.junit.experimental.categories.Category;
 
 /**
  *
- * @author robert
  */
 public class HandshakeLayerTest {
 

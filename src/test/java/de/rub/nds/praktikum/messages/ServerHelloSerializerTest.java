@@ -16,7 +16,6 @@ import org.junit.experimental.categories.Category;
 
 /**
  *
- * @author robert
  */
 @Category(de.rub.nds.praktikum.Aufgabe2.class)
 public class ServerHelloSerializerTest {

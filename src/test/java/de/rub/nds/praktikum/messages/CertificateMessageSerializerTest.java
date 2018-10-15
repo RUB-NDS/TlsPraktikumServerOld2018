@@ -9,7 +9,6 @@ import org.junit.experimental.categories.Category;
 
 /**
  *
- * @author robert
  */
 @Category(de.rub.nds.praktikum.Aufgabe4.class)
 public class CertificateMessageSerializerTest {

@@ -43,7 +43,6 @@ import static org.mockito.Mockito.when;
 
 /**
  *
- * @author robert
  */
 public class TlsProtocolTest {
 

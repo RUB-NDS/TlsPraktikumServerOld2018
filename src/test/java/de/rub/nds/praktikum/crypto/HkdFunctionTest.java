@@ -1,7 +1,5 @@
 package de.rub.nds.praktikum.crypto;
 
-import de.rub.nds.praktikum.Aufgabe1;
-import de.rub.nds.praktikum.Aufgabe3;
 import de.rub.nds.praktikum.util.Util;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,7 +11,6 @@ import org.junit.experimental.categories.Category;
 
 /**
  *
- * @author robert
  */
 @Category(de.rub.nds.praktikum.Aufgabe3.class)
 public class HkdFunctionTest {

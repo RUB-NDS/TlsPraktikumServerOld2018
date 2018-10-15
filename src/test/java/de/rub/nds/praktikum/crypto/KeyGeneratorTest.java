@@ -8,7 +8,6 @@ import org.junit.experimental.categories.Category;
 
 /**
  *
- * @author robert
  */
 @Category(de.rub.nds.praktikum.Aufgabe3.class)
 public class KeyGeneratorTest {
