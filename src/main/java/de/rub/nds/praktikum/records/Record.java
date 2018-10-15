@@ -44,7 +44,7 @@ public class Record {
 
     /**
      * Returns the version of the record
-     * 
+     *
      * @return the version of the record
      */
     public byte[] getVersion() {
@@ -53,7 +53,7 @@ public class Record {
 
     /**
      * Returns the record payload
-     * 
+     *
      * @return the record payload
      */
     public byte[] getData() {
@@ -62,7 +62,7 @@ public class Record {
 
     /**
      * Sets the record payload
-     * 
+     *
      * @param data the record payload
      */
     public void setData(byte[] data) {

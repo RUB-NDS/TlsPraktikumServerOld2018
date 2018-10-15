@@ -5,18 +5,17 @@
  */
 package de.rub.nds.praktikum.protocol;
 
+import de.rub.nds.praktikum.Aufgabe2;
 import de.rub.nds.praktikum.constants.AlertDescription;
 import de.rub.nds.praktikum.constants.AlertLevel;
 import de.rub.nds.praktikum.constants.TlsState;
 import de.rub.nds.praktikum.util.Util;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.experimental.categories.Category;
 
 /**
  *
@@ -39,6 +38,7 @@ public class AlertLayerTest {
     }
 
     @Test
+    @Category(Aufgabe2.class)
     public void testSendAlert() throws Exception {
         layer.sendAlert(AlertLevel.WARNING, AlertDescription.BAD_RECORD_MAC);
         assertArrayEquals(outputStream.toByteArray(), Util.hexStringToByteArray("15030300020114"));
@@ -49,6 +49,7 @@ public class AlertLayerTest {
     }
 
     @Test
+    @Category(Aufgabe2.class)
     public void testProcessByteStream() {
         layer.processByteStream(Util.hexStringToByteArray("0114"));
         //this is just a warning alert

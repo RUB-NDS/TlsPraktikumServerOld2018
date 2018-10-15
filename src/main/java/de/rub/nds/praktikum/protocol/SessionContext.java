@@ -97,7 +97,7 @@ public class SessionContext {
             serverSupportedCipherSuites.add(CipherSuite.TLS_AES_128_GCM_SHA256);
             transcriptDigest = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException ex) {
-            throw new TlsException("Could not initialize session context",ex);
+            throw new TlsException("Could not initialize session context", ex);
         }
     }
 

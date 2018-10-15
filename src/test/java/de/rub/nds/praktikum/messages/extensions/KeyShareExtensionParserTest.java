@@ -1,4 +1,3 @@
-
 package de.rub.nds.praktikum.messages.extensions;
 
 import de.rub.nds.praktikum.exception.ParserException;
@@ -25,31 +24,31 @@ public class KeyShareExtensionParserTest {
         assertArrayEquals("The group of the second Entry is wrong", Util.hexStringToByteArray("0004"), keyShareExtension.getEntryList().get(1).getGroupBytes());
         assertArrayEquals("The keyshare of the second Entry is wrong", Util.hexStringToByteArray("678901"), keyShareExtension.getEntryList().get(1).getKeyShare());
     }
-    
+
     @Test(expected = ParserException.class)
     public void testParseInvalidLengthLong() {
         KeyShareExtensionParser parser = new KeyShareExtensionParser(Util.hexStringToByteArray("000F0002000301234500040003678901"));
         KeyShareExtension keyShareExtension = parser.parse();
     }
-    
+
     @Test(expected = ParserException.class)
     public void testParseInvalidLengthShort() {
         KeyShareExtensionParser parser = new KeyShareExtensionParser(Util.hexStringToByteArray("000D0002000301234500040003678901"));
         KeyShareExtension keyShareExtension = parser.parse();
     }
-    
+
     @Test(expected = ParserException.class)
     public void testParseInvalidKeyShareLengthLong() {
         KeyShareExtensionParser parser = new KeyShareExtensionParser(Util.hexStringToByteArray("000E000200FF01234500040003678901"));
         KeyShareExtension keyShareExtension = parser.parse();
     }
-    
+
     @Test(expected = ParserException.class)
     public void testParseInvalidKeyShareLengthShort() {
         KeyShareExtensionParser parser = new KeyShareExtensionParser(Util.hexStringToByteArray("000E0002000001234500040003678901"));
         KeyShareExtension keyShareExtension = parser.parse();
     }
-    
+
     @Test(expected = ParserException.class)
     public void testParseValidWithGarbageData() {
         KeyShareExtensionParser parser = new KeyShareExtensionParser(Util.hexStringToByteArray("000E0002000301234500040003678901AABBCC"));

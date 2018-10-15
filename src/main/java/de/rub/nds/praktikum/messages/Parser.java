@@ -21,7 +21,7 @@ public abstract class Parser<T> {
      * Array that should be parsed
      */
     private final byte[] array;
-    
+
     /**
      * Constructor for the Parser
      *

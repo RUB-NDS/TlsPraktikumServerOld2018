@@ -18,7 +18,7 @@ public class KeyShareExtensionSerializerTest {
     public void testSerializeBytes() {
         KeyShareExtension extension = new KeyShareExtension(new KeyShareEntry(new byte[]{0, 1,}, new byte[]{1, 2, 3,}));
         KeyShareExtensionSerializer serializer = new KeyShareExtensionSerializer(extension);
-        assertArrayEquals("KeyShare Extension with a single normal entry is wrong:" +Util.bytesToHexString(serializer.serialize()), Util.hexStringToByteArray("00010003010203"), serializer.serialize());
+        assertArrayEquals("KeyShare Extension with a single normal entry is wrong:" + Util.bytesToHexString(serializer.serialize()), Util.hexStringToByteArray("00010003010203"), serializer.serialize());
         List<KeyShareEntry> entryList = new LinkedList<>();
         entryList.add(new KeyShareEntry(new byte[]{0, 1,}, new byte[]{1, 2, 3,}));
         extension = new KeyShareExtension(entryList);

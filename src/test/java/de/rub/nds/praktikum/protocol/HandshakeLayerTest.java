@@ -5,6 +5,9 @@
  */
 package de.rub.nds.praktikum.protocol;
 
+import de.rub.nds.praktikum.Aufgabe2;
+import de.rub.nds.praktikum.Aufgabe3;
+import de.rub.nds.praktikum.Aufgabe4;
 import de.rub.nds.praktikum.constants.CipherSuite;
 import de.rub.nds.praktikum.constants.NamedGroup;
 import de.rub.nds.praktikum.constants.ProtocolType;
@@ -42,6 +45,7 @@ import org.junit.Assert;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 /**
  *
@@ -68,6 +72,7 @@ public class HandshakeLayerTest {
     }
 
     @Test
+    @Category(Aufgabe2.class)
     public void testSendServerHello() {
         List<CipherSuite> suiteList = new LinkedList<>();
         suiteList.add(CipherSuite.TLS_AES_128_GCM_SHA256);
@@ -111,7 +116,8 @@ public class HandshakeLayerTest {
     }
 
     @Test
-    public void testSendServerHelloTask2() {
+    @Category(Aufgabe3.class)
+    public void testSendServerHelloTask3() {
         List<CipherSuite> suiteList = new LinkedList<>();
         suiteList.add(CipherSuite.TLS_AES_128_GCM_SHA256);
         List<KeyShareEntry> keyShareEntryList = new LinkedList<>();
@@ -160,7 +166,8 @@ public class HandshakeLayerTest {
     }
 
     @Test
-    public void testSendEncryptedExtensionsTask2() {
+    @Category(Aufgabe4.class)
+    public void testSendEncryptedExtensionsTask4() {
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         handshakeLayer.sendEncryptedExtensions();
         byte[] encryptedExtensionBytes = outputStream.toByteArray();
@@ -183,6 +190,7 @@ public class HandshakeLayerTest {
     }
 
     @Test
+    @Category(Aufgabe4.class)
     public void testSendCertificates() {
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         context.setCertificate(Certificate.EMPTY_CHAIN);
@@ -207,6 +215,7 @@ public class HandshakeLayerTest {
     }
 
     @Test
+    @Category(Aufgabe4.class)
     public void testSendCertificateVerify() {
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         ECGenParameterSpec ecGenSpec = new ECGenParameterSpec("secp256r1");
@@ -252,6 +261,7 @@ public class HandshakeLayerTest {
     }
 
     @Test
+    @Category(Aufgabe4.class)
     public void testSendFinished() {
         context.setHandshakeSecret(Util.hexStringToByteArray("00111222"));
         context.setSharedEcdheSecret(Util.hexStringToByteArray("CCDDEEFF"));
@@ -283,6 +293,7 @@ public class HandshakeLayerTest {
     }
 
     @Test
+    @Category(Aufgabe2.class)
     public void testProcessByteClientHello() {
         handshakeLayer = new HandshakeLayer(context, recordLayer);
         handshakeLayer.processByteStream(Util.hexStringToByteArray("0100012e0303d2070dda5da15b5b1e8df24392f06794436f684f4cde088fd852d7c0b6fdff4c20781bf656122613ab8dfdea009961ebe4bcacc71f1f5547c8a2f753273f2f68ad003e130213031301c02cc030009fcca9cca8ccaac02bc02f009ec024c028006bc023c0270067c00ac0140039c009c0130033009d009c003d003c0035002f00ff010000a70000000e000c0000096c6f63616c686f7374000b000403000102000a000c000a001d0017001e00190018002300000016000000170000000d0030002e040305030603080708080809080a080b080408050806040105010601030302030301020103020202040205020602002b0009080304030303020301002d00020101003300260024001d0020c7ba2d3c2543a66a3e1575dab429f61d3a0d6e680c83e86608330079d9c00b1c"));
@@ -298,6 +309,7 @@ public class HandshakeLayerTest {
     }
 
     @Test(expected = UnexpectedMessageException.class)
+    @Category(Aufgabe2.class)
     public void testProcessClientHelloWrongState1() {
         context.setTlsState(TlsState.CONNECTED);
         handshakeLayer = new HandshakeLayer(context, recordLayer);
@@ -305,6 +317,7 @@ public class HandshakeLayerTest {
     }
 
     @Test(expected = UnexpectedMessageException.class)
+    @Category(Aufgabe2.class)
     public void testProcessClientHelloWrongState2() {
         context.setTlsState(TlsState.ERROR);
         handshakeLayer = new HandshakeLayer(context, recordLayer);
@@ -312,6 +325,7 @@ public class HandshakeLayerTest {
     }
 
     @Test(expected = UnexpectedMessageException.class)
+    @Category(Aufgabe2.class)
     public void testProcessClientHelloWrongState3() {
         context.setTlsState(TlsState.NEGOTIATED);
         handshakeLayer = new HandshakeLayer(context, recordLayer);
@@ -319,6 +333,7 @@ public class HandshakeLayerTest {
     }
 
     @Test(expected = UnexpectedMessageException.class)
+    @Category(Aufgabe2.class)
     public void testProcessClientHelloWrongState4() {
         context.setTlsState(TlsState.RECVD_CH);
         handshakeLayer = new HandshakeLayer(context, recordLayer);
@@ -326,6 +341,7 @@ public class HandshakeLayerTest {
     }
 
     @Test(expected = UnexpectedMessageException.class)
+    @Category(Aufgabe2.class)
     public void testProcessClientHelloWrongState5() {
         context.setTlsState(TlsState.WAIT_FINISHED);
         handshakeLayer = new HandshakeLayer(context, recordLayer);
@@ -333,6 +349,7 @@ public class HandshakeLayerTest {
     }
 
     @Test
+    @Category(Aufgabe4.class)
     public void testProcessByteFinished() {
         context.setClientHandshakeTrafficSecret(Util.hexStringToByteArray("c677a34f169db51f85411ddcacb9c461b603f72923d2a00dc918a915052e37a8"));
         context.setServerHandshakeTrafficSecret(Util.hexStringToByteArray("a0b47ba9e740d01c1da4960a174d79d03e71d178d18afa5f77a45cdcad3bff03"));
@@ -347,6 +364,7 @@ public class HandshakeLayerTest {
     }
 
     @Test(expected = TlsException.class)
+    @Category(Aufgabe4.class)
     public void testProcessByteInvalidFinished() {
         context.setClientHandshakeTrafficSecret(Util.hexStringToByteArray("c677a34f169db51f85411ddcacb9c461b603f72923d2a00dc918a915052e37a8"));
         context.setServerHandshakeTrafficSecret(Util.hexStringToByteArray("a0b47ba9e740d01c1da4960a174d79d03e71d178d18afa5f77a45cdcad3bff03"));
