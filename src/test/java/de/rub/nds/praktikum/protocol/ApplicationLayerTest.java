@@ -5,22 +5,25 @@
  */
 package de.rub.nds.praktikum.protocol;
 
+import de.rub.nds.praktikum.constants.AlertDescription;
+import de.rub.nds.praktikum.constants.AlertLevel;
 import de.rub.nds.praktikum.constants.ProtocolType;
 import de.rub.nds.praktikum.constants.TlsState;
 import de.rub.nds.praktikum.records.Record;
 import de.rub.nds.praktikum.util.Util;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.experimental.categories.Category;
 
 /**
  *
  * @author robert
  */
-@Category(de.rub.nds.praktikum.Aufgabe4.class)
 public class ApplicationLayerTest {
 
     private ApplicationLayer layer;

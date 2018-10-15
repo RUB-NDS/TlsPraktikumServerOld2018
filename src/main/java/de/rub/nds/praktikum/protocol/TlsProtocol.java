@@ -14,7 +14,7 @@ import org.bouncycastle.crypto.tls.Certificate;
  */
 public class TlsProtocol {
 
-    private final static long TIMEOUT = 1000;
+    private final long timeout;
 
     private final Socket socket;
     private final RecordLayer recordLayer;
@@ -33,7 +33,7 @@ public class TlsProtocol {
      * @throws IOException throws an io exception if something goes wrong with
      * the socket streams
      */
-    public TlsProtocol(Socket socket, Certificate cert, PrivateKey key) throws IOException {
+    public TlsProtocol(Socket socket, Certificate cert, PrivateKey key, long timeout) throws IOException {
         throw new UnsupportedOperationException("Add code here");
     }
 
@@ -44,7 +44,15 @@ public class TlsProtocol {
      */
     public void initSession() throws IOException {
         throw new UnsupportedOperationException("Add code here");
+    }
 
+    /**
+     * Performs a step in the statemachine
+     *
+     * @throws IOException if something goes wrong with the socket streams
+     */
+    public void stepConnectionState() throws IOException {
+        throw new UnsupportedOperationException("Add code here");
     }
 
     private void passDataToLayer(List<Record> recordList) {

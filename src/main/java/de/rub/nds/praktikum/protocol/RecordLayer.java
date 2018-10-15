@@ -109,7 +109,7 @@ public class RecordLayer {
         throw new UnsupportedOperationException("Add code here");
     }
 
-    private void decrypt(Record record) {
+    protected void decrypt(Record record) {
         throw new UnsupportedOperationException("Add code here");
     }
 

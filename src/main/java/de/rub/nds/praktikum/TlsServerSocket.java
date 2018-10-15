@@ -39,7 +39,7 @@ public class TlsServerSocket extends ServerSocket {
     @Override
     public Socket accept() throws IOException {
         Socket s = super.accept();
-        protocol = new TlsProtocol(s, cert, key);
+        protocol = new TlsProtocol(s, cert, key, 1000);
         long starttime = System.currentTimeMillis();
         protocol.initSession();
         long stoptime = System.currentTimeMillis();
