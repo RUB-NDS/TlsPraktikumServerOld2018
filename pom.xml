@@ -114,6 +114,12 @@
     </build>
     <profiles>
         <profile>
+            <id>aufgabe0</id>
+            <properties>
+                <testcase.groups>de.rub.nds.praktikum.Aufgabe0</testcase.groups>
+            </properties>
+        </profile>
+        <profile>
             <id>aufgabe1</id>
             <properties>
                 <testcase.groups>de.rub.nds.praktikum.Aufgabe1</testcase.groups>

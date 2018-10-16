@@ -7,31 +7,38 @@ compilation:
   script:
     - echo "Der Server wird gebaut"
     - mvn clean package -DskipTests=true
-    
+
+aufgabe0:
+  stage: test
+  tags: 
+    - tls
+  script:
+    - mvn test -P aufgabe0
+
 aufgabe1:
   stage: test
   tags: 
     - tls
   script:
-    - mvn test -P aufgabe1 
+    - if [ `date +%y%m%d` -gt 181024 ]; then mvn test -P aufgabe1; fi 
     
 aufgabe2:
   stage: test
   tags: 
     - tls
   script:
-    - if [ `date +%y%m%d` -gt 181024 ]; then mvn test -P aufgabe2; fi 
+    - if [ `date +%y%m%d` -gt 181110 ]; then mvn test -P aufgabe2; fi 
 
 aufgabe3:
   stage: test
   tags: 
     - tls
   script:
-    - if [ `date +%y%m%d` -gt 181120 ]; then mvn test -P aufgabe3; fi 
+    - if [ `date +%y%m%d` -gt 181130 ]; then mvn test -P aufgabe3; fi 
 
 aufgabe4:
   stage: test
   tags: 
     - tls
   script:
-    - if [ `date +%y%m%d` -gt 181030 ]; then mvn test -P aufgabe4; fi 
+    - if [ `date +%y%m%d` -gt 181231 ]; then mvn test -P aufgabe4; fi 
