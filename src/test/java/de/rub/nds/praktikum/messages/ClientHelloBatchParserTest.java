@@ -12,7 +12,6 @@ import org.junit.runners.Parameterized;
 
 /**
  *
- * @author robert
  */
 @RunWith(Parameterized.class)
 @Category(de.rub.nds.praktikum.Aufgabe2.class)

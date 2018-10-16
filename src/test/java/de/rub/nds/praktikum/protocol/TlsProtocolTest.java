@@ -1,5 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package de.rub.nds.praktikum.protocol;
 
+import de.rub.nds.praktikum.Aufgabe1;
+import de.rub.nds.praktikum.Aufgabe2;
+import de.rub.nds.praktikum.Aufgabe4;
 import de.rub.nds.praktikum.constants.CipherSuite;
 import de.rub.nds.praktikum.constants.NamedGroup;
 import de.rub.nds.praktikum.constants.TlsState;
@@ -29,12 +37,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
  *
- * @author robert
  */
 public class TlsProtocolTest {
 
@@ -69,12 +77,14 @@ public class TlsProtocolTest {
     }
 
     @Test(expected = TlsException.class) //Test that connection times out if we do not receive a client hello
+    @Category(Aufgabe2.class)
     public void testInitSessionNoClientHello() throws Exception {
         protocol.getContext().setTlsState(TlsState.START);
         protocol.stepConnectionState();
     }
 
     @Test
+    @Category(Aufgabe2.class)
     public void testInitSessionClientHello() throws Exception {
         socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -88,6 +98,7 @@ public class TlsProtocolTest {
     }
 
     @Test
+    @Category(Aufgabe2.class)
     public void testInitSendServerHello() throws Exception {
         socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -109,6 +120,7 @@ public class TlsProtocolTest {
     }
 
     @Test
+    @Category(Aufgabe4.class)
     public void testInitFinished() throws Exception {
         socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -127,6 +139,7 @@ public class TlsProtocolTest {
     }
 
     @Test
+    @Category(Aufgabe4.class)
     public void testSendData() throws Exception {
         socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -140,6 +153,7 @@ public class TlsProtocolTest {
     }
 
     @Test
+    @Category(Aufgabe4.class)
     public void testReceiveData() throws Exception {
         socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -153,6 +167,7 @@ public class TlsProtocolTest {
     }
 
     @Test(expected = TlsException.class)
+    @Category(Aufgabe4.class)
     public void testReceiveDataNonAppData() throws Exception {
         socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -165,6 +180,7 @@ public class TlsProtocolTest {
     }
 
     @Test(expected = TlsException.class)
+    @Category(Aufgabe4.class)
     public void testReceiveDataNotConnected() throws Exception {
         socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -177,6 +193,7 @@ public class TlsProtocolTest {
     }
 
     @Test(expected = TlsException.class)
+    @Category(Aufgabe4.class)
     public void testSendDataNotConnected() throws Exception {
         socket = mock(Socket.class);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

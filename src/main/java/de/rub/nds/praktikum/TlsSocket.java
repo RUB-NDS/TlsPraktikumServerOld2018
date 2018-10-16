@@ -12,7 +12,7 @@ import java.net.UnknownHostException;
  *
  */
 public class TlsSocket extends Socket {
-    
+
     private final Socket realSocket;
 
     private final TlsOutputByteStream outputStream;
