@@ -62,7 +62,8 @@ public class Util {
         }
         byte[] result = new byte[size];
         int shift = 0;
-        for (int i = size - 1; i >= 0; i--) {
+        int finalPosition = ((size > Integer.BYTES) ? (size - Integer.BYTES) : 0);
+        for (int i = size - 1; i >= finalPosition; i--) {
             result[i] = (byte) (value >>> shift);
             shift += 8;
         }
@@ -82,7 +83,8 @@ public class Util {
         }
         byte[] result = new byte[size];
         int shift = 0;
-        for (int i = size - 1; i >= 0; i--) {
+        int finalPosition = ((size > Long.BYTES) ? (size - Long.BYTES) : 0);
+        for (int i = size - 1; i >= finalPosition; i--) {
             result[i] = (byte) (value >>> shift);
             shift += 8;
         }
